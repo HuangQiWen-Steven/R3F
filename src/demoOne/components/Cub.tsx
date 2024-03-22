@@ -1,14 +1,16 @@
 import { useRef } from "react";
-import { GroupProps, useFrame } from "@react-three/fiber";
+import {  useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 function Cub() {
-  const groupRef = useRef<GroupProps>({});
-  const cubRef = useRef<GroupProps>({});
+  const groupRef = useRef(null);
+  const cubRef = useRef(null);
+
   useFrame((_, delta) => {
     // groupRef.current.rotation.y += delta;
-    cubRef.current.rotation.y += delta;
+    cubRef.current ? cubRef.current.rotation.y += delta : null
   });
+  
   return (
     <>
       <OrbitControls />
